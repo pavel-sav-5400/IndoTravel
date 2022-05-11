@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 const timerCountDays = document.querySelector('.timer__count_days');
 const timerСountHours = document.querySelector('.timer__count_hours');
@@ -10,6 +11,13 @@ const timerUnitsMinutes = document.querySelector('.timer__units_minutes');
 const heroText = document.querySelector('.hero__text');
 const heroTimer = document.querySelector('.hero__timer');
 
+const travelItem = document.querySelectorAll('.travel__item');
+const travelItemTitle = document.querySelectorAll('.travel__item-title');
+const travelItemTextWrapper = document.querySelectorAll('.travel__item-text-wrapper');
+
+const headerMenuButton = document.querySelector('.header__menu-button');
+const headerMenu = document.querySelector('.header__menu');
+
 export {
   timerCountDays,
   timerСountHours,
@@ -19,4 +27,9 @@ export {
   timerUnitsMinutes,
   heroText,
   heroTimer,
+  headerMenuButton,
+  headerMenu,
+  travelItem,
+  travelItemTitle,
+  travelItemTextWrapper,
 };
