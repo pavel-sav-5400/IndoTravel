@@ -9,7 +9,7 @@ import {
   heroTimer,
 } from './getElems.js';
 
-import {sklonenie} from '../script.js';
+import {declination} from '../script.js';
 
 const getTimeRemaining = () => {
   const deadline = document.querySelector('.timer').dataset.timerDeadline;
@@ -31,9 +31,9 @@ const start = () => {
   timerCountMinutes.textContent = timer.minutes < 10 ?
      '0' + timer.minutes : timer.minutes;
 
-  timerUnitsDays.textContent = sklonenie(timer.days, ['день', 'дня', 'дней']);
-  timerUnitsHours.textContent = sklonenie(timer.hours, ['час', 'часа', 'часов']);
-  timerUnitsMinutes.textContent = sklonenie(timer.minutes, ['минута', 'минуты', 'минут']);
+  timerUnitsDays.textContent = declination(timer.days, ['день', 'дня', 'дней']);
+  timerUnitsHours.textContent = declination(timer.hours, ['час', 'часа', 'часов']);
+  timerUnitsMinutes.textContent = declination(timer.minutes, ['минута', 'минуты', 'минут']);
   const interval = setTimeout(start, 1000);
   if (timer.timeRemaining < 60000) {
     clearTimeout(interval);
@@ -42,4 +42,3 @@ const start = () => {
   }
 };
 export {start};
-
