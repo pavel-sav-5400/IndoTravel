@@ -13,8 +13,14 @@ background: url('img/airplane.svg') center/contain no-repeat;
 `;
 document.body.append(fly);
 
+if (screen.width < 758) {
+  fly.style.cssText = `
+  display: none
+  `;
+}
+
 const calcPositionFly = () => {
-  const maxTop = docEl.scrollWidth - fly.clientWidth;
+  const maxTop = docEl.clientHeight - fly.clientHeight;
   const maxScroll = docEl.scrollHeight - docEl.clientHeight;
   const percentScroll = (window.pageYOffset * 100) / maxScroll;
 
