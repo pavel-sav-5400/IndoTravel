@@ -55,9 +55,7 @@ bottom: 0;
 pointer-events: none;
 background: url('img/airplaneDown.svg') center/contain no-repeat;
 `;
-    fly.style.transform = `rotate(180deg)`;
     requestAnimationFrame(calcPositionFly);
   }
   lastScrollTop = st <= 0 ? 0 : st;
 });
-// fly.style.transform = `rotate(90deg)`;
