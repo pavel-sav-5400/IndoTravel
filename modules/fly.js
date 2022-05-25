@@ -10,6 +10,7 @@ right: 0;
 bottom: 0;
 pointer-events: none;
 background: url('img/airplane.svg') center/contain no-repeat;
+transition: 0.3s transform;
 `;
 document.body.append(fly);
 
@@ -19,6 +20,8 @@ if (screen.width < 758) {
   `;
 }
 
+let lastScrollTop = 0;
+
 const calcPositionFly = () => {
   const maxTop = docEl.clientHeight - fly.clientHeight;
   const maxScroll = docEl.scrollHeight - docEl.clientHeight;
@@ -26,36 +29,20 @@ const calcPositionFly = () => {
 
   const top = maxTop * (percentScroll / 100);
 
-  fly.style.transform = `translateY(${-top}px)`;
+  const st = window.pageYOffset || docEl.scrollTop;
+
+  if (st > lastScrollTop) {
+    fly.style.transform = `rotate(0)`;
+  } else {
+    fly.style.transform = `rotate(180deg)`;
+  }
+  fly.style.bottom = `${top}px`;
+  lastScrollTop = st <= 0 ? 0 : st;
 };
 
 calcPositionFly();
 
-let lastScrollTop = 0;
+
 window.addEventListener('scroll', () => {
-  const st = window.pageYOffset || docEl.scrollTop;
-  if (st > lastScrollTop) {
-    fly.style.cssText = `
-position: fixed;
-width: 50px;
-height: 50px;
-right: 0;
-bottom: 0;
-pointer-events: none;
-background: url('img/airplane.svg') center/contain no-repeat;
-`;
-    requestAnimationFrame(calcPositionFly);
-  } else {
-    fly.style.cssText = `
-position: fixed;
-width: 50px;
-height: 50px;
-right: 0;
-bottom: 0;
-pointer-events: none;
-background: url('img/airplaneDown.svg') center/contain no-repeat;
-`;
-    requestAnimationFrame(calcPositionFly);
-  }
-  lastScrollTop = st <= 0 ? 0 : st;
+  calcPositionFly();
 });
