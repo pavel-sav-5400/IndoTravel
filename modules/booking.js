@@ -40,17 +40,23 @@ const addDateList = async () => {
 addDateList();
 
 // заполнение количества людей в выпадающие списки
-const addPeopleList = data => {
+const addPeopleListReserv = data => {
   const arr = data;
   const people = arr.map(item => {
     reservPeople.insertAdjacentHTML('beforeend', `
     <option value="${item}" class="tour__option reservation__option">${item}</option>  
     `);
+  });
+  reservPeople.append(...people);
+};
+
+const addPeopleListInfo = data => {
+  const arr = data;
+  const people = arr.map(item => {
     tourPeople.insertAdjacentHTML('beforeend', `
     <option value="${item}" class="tour__option reservation__option">${item}</option>  
     `);
   });
-  reservPeople.append(...people);
   tourPeople.append(...people);
 };
 
@@ -65,7 +71,7 @@ const reservationDateForm = async () => {
       for (const i of people) {
         arrPeople.push(i);
       }
-      addPeopleList(arrPeople);
+      addPeopleListReserv(arrPeople);
     }
   });
 };
@@ -81,7 +87,7 @@ const tourDateForm = async () => {
       for (const i of people) {
         arrPeople.push(i);
       }
-      addPeopleList(arrPeople);
+      addPeopleListInfo(arrPeople);
     }
   });
 };
