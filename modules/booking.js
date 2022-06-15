@@ -8,6 +8,9 @@ const tourPeople = document.querySelector('#tour__people');
 const reservationData = document.querySelector('.reservation__data');
 const reservationPrice = document.querySelector('.reservation__price');
 
+/* reservPeople.innerHTML = '';
+tourPeople.innerHTML = ''; */
+
 const loadData = async () => {
   const result = await fetch('booking.json');
   const data = await result.json();
@@ -25,6 +28,8 @@ function* makeRangeIterator(start = 0, end = 0, step = 1) {
 
 // заполнение дат тура
 const addDateList = async () => {
+/*   reservDate.innerHTML = '';
+  tourDate.innerHTML = ''; */
   const data = await loadData();
   const dates = data.map(item => {
     reservDate.insertAdjacentHTML('beforeend', `
@@ -39,7 +44,7 @@ const addDateList = async () => {
 };
 addDateList();
 
-// заполнение количества людей в выпадающие списки
+// заполнение количества людей в список бронирования
 const addPeopleListReserv = data => {
   const arr = data;
   const people = arr.map(item => {
@@ -50,6 +55,7 @@ const addPeopleListReserv = data => {
   reservPeople.append(...people);
 };
 
+// заполнение количества людей в список инфо
 const addPeopleListInfo = data => {
   const arr = data;
   const people = arr.map(item => {
@@ -60,7 +66,7 @@ const addPeopleListInfo = data => {
   tourPeople.append(...people);
 };
 
-// получаем количество человек в зависимости от даты
+// получаем количество человек в зависимости от даты в бронировании
 const reservationDateForm = async () => {
   const data = await loadData();
   const date = reservDate.value;
@@ -76,7 +82,7 @@ const reservationDateForm = async () => {
   });
 };
 
-// форма "узнать цену"
+// получаем количество человек в зависимости от даты в форме "узнать цену"
 const tourDateForm = async () => {
   const data = await loadData();
   const date = tourDate.value;
@@ -107,12 +113,16 @@ const getInfoReserv = async () => {
   });
 };
 
-reservDate.addEventListener('click', () => {
+reservDate.addEventListener('change', () => {
+  reservPeople.innerHTML = '';
   reservationDateForm();
   getInfoReserv();
 });
 
-tourDate.addEventListener('click', tourDateForm);
+tourDate.addEventListener('change', () => {
+  tourPeople.innerHTML = '';
+  tourDateForm();
+});
 
 reservPeople.addEventListener('click', () => {
   getInfoReserv();
