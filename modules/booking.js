@@ -8,8 +8,6 @@ const tourPeople = document.querySelector('#tour__people');
 const reservationData = document.querySelector('.reservation__data');
 const reservationPrice = document.querySelector('.reservation__price');
 
-/* reservPeople.innerHTML = '';
-tourPeople.innerHTML = ''; */
 
 const loadData = async () => {
   const result = await fetch('booking.json');
@@ -28,8 +26,6 @@ function* makeRangeIterator(start = 0, end = 0, step = 1) {
 
 // заполнение дат тура
 const addDateList = async () => {
-/*   reservDate.innerHTML = '';
-  tourDate.innerHTML = ''; */
   const data = await loadData();
   const dates = data.map(item => {
     reservDate.insertAdjacentHTML('beforeend', `
