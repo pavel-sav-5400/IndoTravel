@@ -111,8 +111,10 @@ const getInfoReserv = async () => {
 
 reservDate.addEventListener('change', () => {
   reservPeople.innerHTML = '';
+  reservPeople.innerHTML = `
+  <option value="" class="tour__option reservation__option">Количество человек</option>
+  `;
   reservationDateForm();
-  getInfoReserv();
 });
 
 tourDate.addEventListener('change', () => {
@@ -120,7 +122,6 @@ tourDate.addEventListener('change', () => {
   tourDateForm();
 });
 
-reservPeople.addEventListener('click', () => {
+reservPeople.addEventListener('change', () => {
   getInfoReserv();
 });
-
